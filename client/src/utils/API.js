@@ -50,6 +50,8 @@ export const deleteBook = (bookId, token) => {
   });
 };
 
+const movieDbApi = "8338ff4dca8c5dfd0d759e7c144e0a5e"
+
 // make a search to google books api
 // https://www.googleapis.com/books/v1/volumes?q=harry+potter
 export const searchGoogleBooks = (query) => {

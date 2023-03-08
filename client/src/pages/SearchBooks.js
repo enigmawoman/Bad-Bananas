@@ -41,21 +41,29 @@ const SearchBooks = () => {
 
     try {
       const response = await fetch(`
-      https://www.googleapis.com/books/v1/volumes?q=${searchInput}`);
+      https://api.themoviedb.org/3/search/movie?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e&language=en-US&query=${searchInput}&page=1&include_adult=false`)
+      //(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}`);
+
+
+      //https://api.themoviedb.org/3/movie/550?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e
 
       if (!response.ok) {
         throw new Error("something went wrong!");
       }
 
-      const { items } = await response.json();
+      const { results } = await response.json();
 
-      const bookData = items.map((book) => ({
+      
+
+      const bookData = results.map((book) => ({
+
         bookId: book.id,
-        authors: book.volumeInfo.authors || ["No author to display"],
-        title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
-        image: book.volumeInfo.imageLinks?.thumbnail || "",
+        rating: book.vote_average || ["No author to display"],
+        title: book.title,
+        description: book.overview,
+        image:(book.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg`  : `https://image.tmdb.org/t/p/original/${book.poster_path }`) ,
       }));
+      console.log(bookData)
 
       setSearchedBooks(bookData);
       setSearchInput("");
@@ -134,7 +142,7 @@ const SearchBooks = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
-                  <p className="small">Authors: {book.authors}</p>
+                  <p className="small">Rating: {book.rating}</p>
                   <Card.Text>{book.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
