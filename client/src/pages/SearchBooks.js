@@ -59,6 +59,7 @@ const SearchBooks = () => {
 
         bookId: book.id,
         rating: book.vote_average || ["No author to display"],
+        voteCount: book.vote_count,
         title: book.title,
         description: book.overview,
         image:(book.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg`  : `https://image.tmdb.org/t/p/original/${book.poster_path }`) ,
@@ -76,18 +77,21 @@ const SearchBooks = () => {
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-
+    console.log(bookToSave);
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
+    console.log(token);
 
     if (!token) {
       return false;
     }
 
     try {
+      console.log(bookToSave)
       const { data } = await saveBook({
         variables: { bookData: { ...bookToSave } },
       });
+      
       console.log(savedBookIds);
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
@@ -100,7 +104,7 @@ const SearchBooks = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Search for Books!</h1>
+          <h1>Search for a Movie!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -110,7 +114,7 @@ const SearchBooks = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
                   size="lg"
-                  placeholder="Search for a book"
+                  placeholder="Search for a movie"
                 />
               </Col>
               <Col xs={12} md={4}>
@@ -127,7 +131,7 @@ const SearchBooks = () => {
         <h2>
           {searchedBooks.length
             ? `Viewing ${searchedBooks.length} results:`
-            : "Search for a book to begin"}
+            : "Search for a movie to begin"}
         </h2>
         <CardColumns>
           {searchedBooks.map((book) => {
@@ -142,7 +146,7 @@ const SearchBooks = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
-                  <p className="small">Rating: {book.rating}</p>
+                  <p className="small">Bad Banana Rating: {book.rating} ({book.voteCount} reviews)</p>
                   <Card.Text>{book.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button

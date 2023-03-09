@@ -50,7 +50,7 @@ const SavedBooks = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Viewing saved books!</h1>
+          <h1>Viewing your WatchList!</h1>
         </Container>
       </Jumbotron>
       <Container>
@@ -59,7 +59,7 @@ const SavedBooks = () => {
             ? `Viewing ${userData.savedBooks.length} saved ${
                 userData.savedBooks.length === 1 ? "book" : "books"
               }:`
-            : "You have no saved books!"}
+            : "Nothing here to watch... add a movie!"}
         </h2>
         <CardColumns>
           {userData.savedBooks.map((book) => {

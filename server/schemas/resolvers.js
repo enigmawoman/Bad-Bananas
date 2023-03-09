@@ -1,4 +1,4 @@
-// these resolvers are replacing the original contollers and routes for the RESTful API model
+ // these resolvers are replacing the original contollers and routes for the RESTful API model
 // require the apollo server and JWT sign in tokens and the USER model
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
@@ -47,6 +47,7 @@ const resolvers = {
         },
         // mutation resolvers for saving a book based on the logged in user
         saveBook: async (parent, { bookData }, context) => {
+            console.log(bookData, "book data on the ");
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
