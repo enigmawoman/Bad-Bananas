@@ -11,6 +11,7 @@ export const GET_ME = gql`
       savedBooks {
         bookId
         rating
+        voteCount
         description
         title
         image

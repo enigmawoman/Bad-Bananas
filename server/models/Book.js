@@ -5,6 +5,9 @@ const bookSchema = new Schema({
   rating: {
     type: Number,
   },
+  voteCount: {
+    type: Number,
+  },
   description: {
     type: String,
     required: true,
