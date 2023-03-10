@@ -11,8 +11,9 @@ import {
 
 import { useMutation } from "@apollo/client";
 import { SAVE_BOOK } from "../utils/mutations";
-import Auth from "../utils/auth";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
+
+import Auth from "../utils/auth";
 
 const SearchBooks = () => {
   // create state for holding returned google api data
@@ -58,11 +59,12 @@ const SearchBooks = () => {
       const bookData = results.map((book) => ({
 
         bookId: book.id,
-        rating: book.vote_average || ["No author to display"],
+        //rating: book.vote_average,
         voteCount: book.vote_count,
-        title: book.title,
         description: book.overview,
-        image:(book.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg`  : `https://image.tmdb.org/t/p/original/${book.poster_path }`) ,
+        title: book.title,
+        //image:`https://image.tmdb.org/t/p/original/${book.poster_path}`
+        //(book.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg`  : `https://image.tmdb.org/t/p/original/${book.poster_path }`) ,
       }));
       console.log(bookData)
 
