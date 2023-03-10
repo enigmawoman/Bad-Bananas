@@ -16,6 +16,7 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "mongoose-float": "^1.0.4",
     "nodemon": "^2.0.21"
   }
 }

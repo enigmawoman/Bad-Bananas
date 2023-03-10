@@ -59,12 +59,11 @@ const SearchBooks = () => {
       const bookData = results.map((book) => ({
 
         bookId: book.id,
-        //rating: book.vote_average,
-        voteCount: book.vote_count,
-        description: book.overview,
-        title: book.title,
-        //image:`https://image.tmdb.org/t/p/original/${book.poster_path}`
-        //(book.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg`  : `https://image.tmdb.org/t/p/original/${book.poster_path }`) ,
+        rating: book.vote_average == null ? 0 : book.vote_average,
+        voteCount: book.vote_count = null ? 0 : book.vote_count,
+        description: book.overview || 'no description available',
+        title: book.title || 'no title available',
+        image:(book.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg`  : `https://image.tmdb.org/t/p/original/${book.poster_path }`) ,
       }));
       console.log(bookData)
 

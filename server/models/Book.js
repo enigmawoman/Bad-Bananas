@@ -5,16 +5,13 @@ const bookSchema = new Schema({
   rating: {
     type: Number,
   },
-  voteCount: {
-    type: Number,
-  },
   description: {
     type: String,
     required: true,
   },
   // saved book id from GoogleBooks
   bookId: {
-    type: Number,
+    type: String,
     required: true,
   },
   image: {
