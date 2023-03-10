@@ -12,7 +12,7 @@ const typeDefs = gql`
 
   type Book {
     bookId: ID!
-    rating: Int
+    rating: Float
     voteCount: Int
     description: String
     title: String!
@@ -27,7 +27,7 @@ const typeDefs = gql`
 
   input BookInput {
     bookId: Int!
-    rating: Int
+    rating: Float
     voteCount: Int
     description: String!
     title: String!
