@@ -6,6 +6,8 @@ import {
   Button,
 } from "react-bootstrap";
 
+import { GiBananaPeeled } from "react-icons/gi";
+
 import { GET_ME } from "../utils/queries";
 import { REMOVE_BOOK } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
@@ -50,14 +52,14 @@ const SavedBooks = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Viewing your WatchList!</h1>
+          <h1>{userData.username}'s WatchList!</h1>
         </Container>
       </Jumbotron>
       <Container>
         <h2>
           {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${
-                userData.savedBooks.length === 1 ? "book" : "books"
+                userData.savedBooks.length === 1 ? "movie" : "movies"
               }:`
             : "Nothing here to watch... add a movie!"}
         </h2>
@@ -74,13 +76,13 @@ const SavedBooks = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
-                  <p className="small">Authors: {book.authors}</p>
+                  <p className="small">Bad Banana Rating: {book.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({book.voteCount} reviews)</p>
                   <Card.Text>{book.description}</Card.Text>
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteBook(book.bookId)}
                   >
-                    Delete this Book!
+                    Remove from Watchlist!
                   </Button>
                 </Card.Body>
               </Card>

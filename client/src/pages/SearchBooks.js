@@ -13,6 +13,8 @@ import { useMutation } from "@apollo/client";
 import { SAVE_BOOK } from "../utils/mutations";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 
+//import { API_KEY } from "../../.env"
+
 import Auth from "../utils/auth";
 
 const SearchBooks = () => {
@@ -160,8 +162,8 @@ const SearchBooks = () => {
                       {savedBookIds?.some(
                         (savedBookId) => savedBookId === book.bookId
                       )
-                        ? "This book has already been saved!"
-                        : "Save this Book!"}
+                        ? "Already in your Watchlist!"
+                        : "Add to Watchlist"}
                     </Button>
                   )}
                 </Card.Body>
