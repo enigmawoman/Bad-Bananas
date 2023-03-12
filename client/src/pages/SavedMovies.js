@@ -6,23 +6,22 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { GiBananaPeeled } from "react-icons/gi";
 
 import { GET_ME } from "../utils/queries";
-import { REMOVE_BOOK } from "../utils/mutations";
+import { REMOVE_MOVIE } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
-import { removeBookId } from "../utils/localStorage";
+import { removeMovieId } from "../utils/localStorage";
 
 // replacing the useEffect with queries and muatations 
-const SavedBooks = () => {
+const SavedMovies = () => {
   const { loading, data } = useQuery(GET_ME);
-  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  const [removeMovie, { error }] = useMutation(REMOVE_MOVIE);
 
   const userData = data?.me || {};
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteBook = async (bookId) => {
+  // create function that accepts the movie's mongo _id value as param and deletes the movie from the database
+  const handleDeleteMovie = async (movieId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -30,14 +29,14 @@ const SavedBooks = () => {
     }
 
     try {
-      const { data } = await removeBook({
-        variables: {bookId: bookId },
+      const { data } = await removeMovie({
+        variables: {movieId: movieId },
       });
 
   
 
-      // upon success, remove book's id from localStorage
-      removeBookId(bookId);
+      // upon success, remove movie's id from localStorage
+      removeMovieId(movieId);
     } catch (err) {
       console.error(err);
     }
@@ -57,30 +56,30 @@ const SavedBooks = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${
-                userData.savedBooks.length === 1 ? "movie" : "movies"
+          {userData.savedMovies.length
+            ? `Viewing ${userData.savedMovies.length} saved ${
+                userData.savedMovies.length === 1 ? "movie" : "movies"
               }:`
             : "Nothing here to watch... add a movie!"}
         </h2>
         <CardColumns>
-          {userData.savedBooks.map((book) => {
+          {userData.savedMovies.map((movie) => {
             return (
-              <Card key={book.bookId} border="dark">
-                {book.image ? (
+              <Card key={movie.movieId} border="dark">
+                {movie.image ? (
                   <Card.Img
-                    src={book.image}
-                    alt={`The cover for ${book.title}`}
+                    src={movie.image}
+                    alt={`The cover for ${movie.title}`}
                     variant="top"
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
-                  <p className="small">Bad Banana Rating: {book.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({book.voteCount} reviews)</p>
-                  <Card.Text>{book.description}</Card.Text>
+                  <Card.Title>{movie.title}</Card.Title>
+
+                  <Card.Text>{movie.description}</Card.Text>
                   <Button
                     className="btn-block btn-danger"
-                    onClick={() => handleDeleteBook(book.bookId)}
+                    onClick={() => handleDeleteMovie(movie.movieId)}
                   >
                     Remove from Watchlist!
                   </Button>
@@ -94,4 +93,4 @@ const SavedBooks = () => {
   );
 };
 
-export default SavedBooks;
+export default SavedMovies;

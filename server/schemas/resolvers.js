@@ -45,25 +45,25 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        // mutation resolvers for saving a book based on the logged in user
-        saveBook: async (parent, { bookData }, context) => {
-            console.log(bookData, "book data on the ");
+        // mutation resolvers for saving a movie based on the logged in user
+        saveMovie: async (parent, { movieData }, context) => {
+            console.log(movieData, "movie data on the ");
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedBooks: bookData } },
+                    { $addToSet: { savedMovies: movieData } },
                     { new: true, runValidators: true }
                 );
                 return updatedUser;
          }
          throw new AuthenticationError('You need to be logged in!');
         },
-        // mutation resolvers for removing a book based on the logged in user
-        removeBook: async (parent, { bookId }, context) => {
+        // mutation resolvers for removing a movie based on the logged in user
+        removeMovie: async (parent, { movieId }, context) => {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedBooks: { bookId } } },
+                    { $pull: { savedMovies: { movieId } } },
                     { new: true }
                 );
                 return updatedUser;
