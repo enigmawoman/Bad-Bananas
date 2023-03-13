@@ -11,7 +11,7 @@ const movieSchema = new Schema({
   },
   // saved movie id
   movieId: {
-    type: String,
+    type: Number,
     required: true,
   },
   image: {

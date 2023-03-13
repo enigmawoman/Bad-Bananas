@@ -9,6 +9,8 @@ import {
   CardColumns,
 } from "react-bootstrap";
 
+import { GiBananaPeeled } from "react-icons/gi";
+
 import { useMutation } from "@apollo/client";
 import { SAVE_MOVIE } from "../utils/mutations";
 import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
@@ -16,6 +18,7 @@ import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
 //import { API_KEY } from "../../.env"
 
 import Auth from "../utils/auth";
+
 
 const SearchMovies = () => {
   // create state for holding returned google api data
@@ -37,6 +40,11 @@ const SearchMovies = () => {
   // create method to search for movies and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    
+ // const API_KEY = process.env.REACT_APP_API_KEY
+
+ // console.log(API_KEY);
 
     if (!searchInput) {
       return false;
@@ -149,7 +157,7 @@ const SearchMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className="small">Bad Banana Rating: {movie.rating} ({movie.voteCount} reviews)</p>
+                  <p className="small">Bad Banana Rating: {movie.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({movie.voteCount} reviews)</p>
                   <Card.Text>{movie.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button

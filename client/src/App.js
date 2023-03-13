@@ -11,6 +11,8 @@ import SearchMovies from "./pages/SearchMovies";
 import SavedMovies from "./pages/SavedMovies";
 import Navbar from "./components/Navbar";
 
+console.log(process.env.REACT_APP_DESCRIPTION)
+
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
