@@ -47,7 +47,7 @@ const resolvers = {
         },
         // mutation resolvers for saving a movie based on the logged in user
         saveMovie: async (parent, { movieData }, context) => {
-            console.log(movieData, "movie data on the ");
+            console.log(movieData, "movie data saved ");
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
@@ -60,12 +60,14 @@ const resolvers = {
         },
         // mutation resolvers for removing a movie based on the logged in user
         removeMovie: async (parent, { movieId }, context) => {
+            console.log({movieId});
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $pull: { savedMovies: { movieId } } },
                     { new: true }
                 );
+                console.log(updatedUser, 'data returned for removal of movieId')
                 return updatedUser;
             }
             throw new AuthenticationError('You need to be logged in!');

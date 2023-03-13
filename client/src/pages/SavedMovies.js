@@ -6,6 +6,7 @@ import {
   Button,
 } from "react-bootstrap";
 
+import { GiBananaPeeled } from "react-icons/gi";
 
 import { GET_ME } from "../utils/queries";
 import { REMOVE_MOVIE } from "../utils/mutations";
@@ -30,13 +31,14 @@ const SavedMovies = () => {
 
     try {
       const { data } = await removeMovie({
-        variables: {movieId: movieId },
+        variables: { movieId },
       });
 
-  
+      console.log(data)
 
       // upon success, remove movie's id from localStorage
-      removeMovieId(movieId);
+
+      removeMovieId(parseInt(movieId));
     } catch (err) {
       console.error(err);
     }
@@ -75,7 +77,7 @@ const SavedMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-
+                  <p className="small">Bad Banana Rating: {movie.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({movie.voteCount} reviews)</p>
                   <Card.Text>{movie.description}</Card.Text>
                   <Button
                     className="btn-block btn-danger"
