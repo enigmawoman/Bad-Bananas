@@ -18,6 +18,7 @@ import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
 //import { API_KEY } from "../../.env"
 
 import Auth from "../utils/auth";
+//import TopMovies from "../components/TopMovies";
 
 
 const SearchMovies = () => {
@@ -30,6 +31,35 @@ const SearchMovies = () => {
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
   const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
+
+  const [topMovies, setTopMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // the API for most popular movies: https://api.themoviedb.org/3/movie/top_rated?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e&language=en-US&page=1
+
+  useEffect(() => {
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e&language=en-US&page=1&region=GB`)
+    .then(response => response.json())
+    .then(data => {
+
+      const movieData = data.results.map((movie) => ({
+
+        movieId: movie.id,
+        rating: movie.vote_average == null ? 0 : movie.vote_average,
+        voteCount: movie.vote_count = null ? 0 : movie.vote_count,
+        description: movie.overview || 'no description available',
+        title: movie.title || 'no title available',
+        image:(movie.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg`  : `https://image.tmdb.org/t/p/original/${movie.poster_path }`) ,
+      }));
+      console.log(movieData )
+       setTopMovies(movieData)
+       setLoading(false)
+    })
+  }, [])
+
+  console.log(topMovies)
+
+
 
   // set up useEffect hook to save `savedMovieIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -84,10 +114,38 @@ const SearchMovies = () => {
     }
   };
 
+  
+
   // create function to handle saving a movie to our database
   const handleSaveMovie = async (movieId) => {
     // find the movie in `searchedMovies` state by the matching id
     const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
+    console.log(movieToSave);
+    // get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    console.log(token);
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      console.log(movieToSave)
+      const { data } = await saveMovie({
+        variables: { movieData: { ...movieToSave } },
+      });
+      
+      console.log(savedMovieIds);
+      // if movie successfully saves to user's account, save movie id to state
+      setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleSaveTopMovie = async (movieId) => {
+    // find the movie in `searchedMovies` state by the matching id
+    const movieToSave = topMovies.find((topMovie) => topMovie.movieId === movieId);
     console.log(movieToSave);
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -139,11 +197,9 @@ const SearchMovies = () => {
       </Jumbotron>
 
       <Container>
-        <h2>
+       
           {searchedMovies.length
-            ? `Viewing ${searchedMovies.length} results:`
-            : "Search for a movie to begin"}
-        </h2>
+            ? 
         <CardColumns>
           {searchedMovies.map((movie) => {
             return (
@@ -179,6 +235,46 @@ const SearchMovies = () => {
             );
           })}
         </CardColumns>
+        : 
+        <>
+        <h2>TODAYS TOP BANANAs : Trending in the UK</h2>
+        <CardColumns>
+          {topMovies.map((topMovie) => {
+            return (
+              <Card key={topMovie.id} border="dark">
+                {topMovie.image ? (
+                  <Card.Img
+                    src={topMovie.image}
+                    alt={`The cover for ${topMovie.title}`}
+                    variant="top"
+                  />
+                ) : null}
+                <Card.Body>
+                  <Card.Title>{topMovie.title}</Card.Title>
+                  <p className="small">Bad Banana Rating: {topMovie.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({topMovie.voteCount} reviews)</p>
+                  <Card.Text>{topMovie.description}</Card.Text>
+                  {Auth.loggedIn() && (
+                    <Button
+                      disabled={savedMovieIds?.some(
+                        (savedMovieId) => savedMovieId === topMovie.movieId
+                      )}
+                      className="btn-block btn-info"
+                      onClick={() => handleSaveTopMovie(topMovie.movieId)}
+                    >
+                      {savedMovieIds?.some(
+                        (savedMovieId) => savedMovieId === topMovie.movieId
+                      )
+                        ? "Already in your Watchlist!"
+                        : "Add to Watchlist"}
+                    </Button>
+                  )}
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      </>
+       }
       </Container>
     </>
   );
