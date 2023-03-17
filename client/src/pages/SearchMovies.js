@@ -9,6 +9,8 @@ import {
   CardColumns,
 } from "react-bootstrap";
 
+import Footer from '../components/Footer'
+
 import { GiBananaPeeled } from "react-icons/gi";
 
 import { useMutation } from "@apollo/client";
@@ -276,6 +278,7 @@ const SearchMovies = () => {
       </>
        }
       </Container>
+            <Footer />
     </>
   );
 };

@@ -6,6 +6,9 @@ import {
   Button,
 } from "react-bootstrap";
 
+import Footer from '../components/Footer'
+
+
 import { GiBananaPeeled } from "react-icons/gi";
 
 import { GET_ME } from "../utils/queries";
@@ -91,6 +94,7 @@ const SavedMovies = () => {
           })}
         </CardColumns>
       </Container>
+            <Footer />
     </>
   );
 };
