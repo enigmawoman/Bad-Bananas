@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  Jumbotron,
-  Container,
-  Col,
-  Form,
-  Button,
-  Card,
-  CardColumns,
-} from "react-bootstrap";
+// import {
+//   Jumbotron,
+//   Container,
+//   Col,
+//   Form,
+//   Button,
+// } from "react-bootstrap";
 
 import { GiBananaPeeled } from "react-icons/gi";
 
@@ -18,6 +16,7 @@ import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
 //import { API_KEY } from "../../.env"
 
 import Auth from "../utils/auth";
+
 //import TopMovies from "../components/TopMovies";
 
 
@@ -171,7 +170,7 @@ const SearchMovies = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      {/* <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Search for a Movie!</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -194,33 +193,35 @@ const SearchMovies = () => {
             </Form.Row>
           </Form>
         </Container>
-      </Jumbotron>
+      </Jumbotron> */}
 
-      <Container>
+      <div className="container">
        
           {searchedMovies.length
             ? 
-        <CardColumns>
+        <div className="card-coloumns">
           {searchedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border="dark">
+              <div className="card-container" key={movie.movieId}>
                 {movie.image ? (
-                  <Card.Img
+                  <div className="image-container">
+                  <img
                     src={movie.image}
                     alt={`The cover for ${movie.title}`}
                     variant="top"
                   />
+                  </div>
                 ) : null}
-                <Card.Body>
-                  <Card.Title>{movie.title}</Card.Title>
+                <div className="card-body">
+                  <h5>{movie.title}</h5>
                   <p className="small">Bad Banana Rating: {movie.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({movie.voteCount} reviews)</p>
-                  <Card.Text>{movie.description}</Card.Text>
+                  <p>{movie.description}</p>
                   {Auth.loggedIn() && (
-                    <Button
+                    <button
                       disabled={savedMovieIds?.some(
                         (savedMovieId) => savedMovieId === movie.movieId
                       )}
-                      className="btn-block btn-info"
+                      className="btn"
                       onClick={() => handleSaveMovie(movie.movieId)}
                     >
                       {savedMovieIds?.some(
@@ -228,37 +229,39 @@ const SearchMovies = () => {
                       )
                         ? "Already in your Watchlist!"
                         : "Add to Watchlist"}
-                    </Button>
+                    </button>
                   )}
-                </Card.Body>
-              </Card>
+                </div>
+              </div>
             );
           })}
-        </CardColumns>
+        </div>
         : 
         <>
-        <h2>TODAYS TOP BANANAs : Trending in the UK</h2>
-        <CardColumns>
+        {/* <h2>TODAYS TOP BANANAS : Trending in the UK</h2> */}
+        <div className="card-coloumns">
           {topMovies.map((topMovie) => {
             return (
-              <Card key={topMovie.id} border="dark">
+              <div className="card-container" key={topMovie.id} >
                 {topMovie.image ? (
-                  <Card.Img
+                  <div className="image-container">
+                  <img
                     src={topMovie.image}
                     alt={`The cover for ${topMovie.title}`}
                     variant="top"
                   />
+                  </div>
                 ) : null}
-                <Card.Body>
-                  <Card.Title>{topMovie.title}</Card.Title>
+                <div className="card-body">
+                  <h5>{topMovie.title}</h5>
                   <p className="small">Bad Banana Rating: {topMovie.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({topMovie.voteCount} reviews)</p>
-                  <Card.Text>{topMovie.description}</Card.Text>
+                  <p>{topMovie.description}</p>
                   {Auth.loggedIn() && (
-                    <Button
+                    <button 
                       disabled={savedMovieIds?.some(
                         (savedMovieId) => savedMovieId === topMovie.movieId
                       )}
-                      className="btn-block btn-info"
+                      className="btn"
                       onClick={() => handleSaveTopMovie(topMovie.movieId)}
                     >
                       {savedMovieIds?.some(
@@ -266,16 +269,16 @@ const SearchMovies = () => {
                       )
                         ? "Already in your Watchlist!"
                         : "Add to Watchlist"}
-                    </Button>
+                    </button>
                   )}
-                </Card.Body>
-              </Card>
+                </div>
+              </div>
             );
           })}
-        </CardColumns>
+        </div>
       </>
        }
-      </Container>
+      </div>
     </>
   );
 };
