@@ -24,6 +24,9 @@ const movieSchema = new Schema({
     type: String,
     required: true,
   },
+  providers:{
+    type: String,
+  }
 });
 
 module.exports = movieSchema;

@@ -13,6 +13,7 @@ import { REMOVE_MOVIE } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { removeMovieId } from "../utils/localStorage";
+import FilmRating from "../components/FilmRating";
 
 // replacing the useEffect with queries and muatations 
 const SavedMovies = () => {
@@ -77,7 +78,14 @@ const SavedMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className="small">Bad Banana Rating: {movie.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({movie.voteCount} reviews)</p>
+                  <FilmRating
+                  movieId={movie.id}
+                  movieRating={movie.rating}/>
+                  <Card.Text className="medium">Bad Banana Rating: <b>{movie.rating}</b> <span>({movie.voteCount} reviews)</span></Card.Text>
+                  {movie.providers
+                    ? <Card.Link href={movie.providers}>Where to Watch 👀</Card.Link>
+                    : <span>Watchlist Not Available</span>
+                  }
                   <Card.Text>{movie.description}</Card.Text>
                   <Button
                     className="btn-block btn-danger"

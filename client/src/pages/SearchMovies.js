@@ -14,6 +14,8 @@ import { GiBananaPeeled } from "react-icons/gi";
 import { useMutation } from "@apollo/client";
 import { SAVE_MOVIE } from "../utils/mutations";
 import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
+import FilmRating from "../components/FilmRating";
+//import Rating from '../components/Rating'
 
 //import { API_KEY } from "../../.env"
 
@@ -46,16 +48,34 @@ const SearchMovies = () => {
 
         movieId: movie.id,
         rating: movie.vote_average == null ? 0 : movie.vote_average,
-        voteCount: movie.vote_count = null ? 0 : movie.vote_count,
+        voteCount: movie.vote_count == null ? 0 : movie.vote_count,
         description: movie.overview || 'no description available',
         title: movie.title || 'no title available',
         image:(movie.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg`  : `https://image.tmdb.org/t/p/original/${movie.poster_path }`) ,
       }));
-      console.log(movieData )
-       setTopMovies(movieData)
-       setLoading(false)
-    })
-  }, [])
+      
+      const moviePromises = movieData.map((movie) =>
+      fetch(
+        `https://api.themoviedb.org/3/movie/${movie.movieId}/watch/providers?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e`
+      ).then((response) => response.json())
+    );
+
+    Promise.all(moviePromises).then((movieProviders) => {
+      const updatedMovieData = movieData.map((movie, index) => {
+        const providers = movieProviders[index];
+        const ukProviders = providers.results?.GB?.link;
+        return {
+          ...movie,
+          providers: ukProviders,
+        };
+      });
+
+      console.log(updatedMovieData);
+      setTopMovies(updatedMovieData);
+      setLoading(false);
+    });
+  });
+}, []);
 
   console.log(topMovies)
 
@@ -70,49 +90,60 @@ const SearchMovies = () => {
   // create method to search for movies and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    
- // const API_KEY = process.env.REACT_APP_API_KEY
-
- // console.log(API_KEY);
-
+  
+    // const API_KEY = process.env.REACT_APP_API_KEY
+    // console.log(API_KEY);
+  
     if (!searchInput) {
       return false;
     }
-
+  
     try {
-      const response = await fetch(`
-      https://api.themoviedb.org/3/search/movie?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e&language=en-US&query=${searchInput}&page=1&include_adult=false`)
-      //(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}`);
-
-
+      const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e&language=en-US&query=${searchInput}&page=1&include_adult=false`);
+  
       //https://api.themoviedb.org/3/movie/550?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e
-
+  
       if (!response.ok) {
         throw new Error("something went wrong!");
       }
-
+  
       const { results } = await response.json();
-
-      
-
+  
       const movieData = results.map((movie) => ({
-
         movieId: movie.id,
         rating: movie.vote_average == null ? 0 : movie.vote_average,
         voteCount: movie.vote_count = null ? 0 : movie.vote_count,
         description: movie.overview || 'no description available',
         title: movie.title || 'no title available',
-        image:(movie.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg`  : `https://image.tmdb.org/t/p/original/${movie.poster_path }`) ,
+        image: (movie.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg` : `https://image.tmdb.org/t/p/original/${movie.poster_path}`),
       }));
-      console.log(movieData)
-
-      setSearchedMovies(movieData);
-      setSearchInput("");
+  
+      const moviePromises = movieData.map((movie) =>
+        fetch(
+          `https://api.themoviedb.org/3/movie/${movie.movieId}/watch/providers?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e`
+        ).then((response) => response.json())
+      );
+  
+      Promise.all(moviePromises).then((movieProviders) => {
+        const updatedMovieData = movieData.map((movie, index) => {
+          const providers = movieProviders[index];
+          const ukProviders = providers.results?.GB?.link;
+          return {
+            ...movie,
+            providers: ukProviders,
+          };
+        });
+  
+        console.log(updatedMovieData)
+  
+        setSearchedMovies(updatedMovieData);
+        setSearchInput("");
+      });
     } catch (err) {
       console.error(err);
     }
   };
+  
 
   
 
@@ -173,6 +204,9 @@ const SearchMovies = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
+       <iframe width="700" height="430" src="https://www.youtube.com/embed/D-3sg-tyHdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </Container>
+        <Container>
           <h1>Search for a Movie!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
@@ -213,7 +247,14 @@ const SearchMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className="small">Bad Banana Rating: {movie.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({movie.voteCount} reviews)</p>
+                  <FilmRating
+                  movieId={movie.id}
+                  movieRating={movie.rating}/>
+                  <Card.Text className="medium">Bad Banana Rating: <b>{movie.rating}</b> <span>({movie.voteCount} reviews)</span></Card.Text>
+                  {movie.providers
+                    ? <Card.Link href={movie.providers}>Where to Watch 👀</Card.Link>
+                    : <span>Watchlist Not Available</span>
+                  }
                   <Card.Text>{movie.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
@@ -237,6 +278,7 @@ const SearchMovies = () => {
         </CardColumns>
         : 
         <>
+      
         <h2>TODAYS TOP BANANAs : Trending in the UK</h2>
         <CardColumns>
           {topMovies.map((topMovie) => {
@@ -251,7 +293,15 @@ const SearchMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{topMovie.title}</Card.Title>
-                  <p className="small">Bad Banana Rating: {topMovie.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({topMovie.voteCount} reviews)</p>
+                  <FilmRating
+                  movieId={topMovie.id}
+                  movieRating={topMovie.rating}/>
+                  <Card.Text className="medium">Bad Banana Rating: <b>{topMovie.rating}</b> <span>({topMovie.voteCount} reviews)</span></Card.Text>
+                  {topMovie.providers
+                    ? <Card.Link href={topMovie.providers}>Where to Watch 👀</Card.Link>
+                    : <span>Watchlist Not Available</span>
+                  }
+
                   <Card.Text>{topMovie.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
