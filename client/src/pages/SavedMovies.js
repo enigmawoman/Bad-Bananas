@@ -6,6 +6,9 @@ import {
   // Button,
 } from "react-bootstrap";
 
+import Footer from '../components/Footer'
+
+
 import { GiBananaPeeled } from "react-icons/gi";
 
 import { GET_ME } from "../utils/queries";
@@ -13,6 +16,7 @@ import { REMOVE_MOVIE } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { removeMovieId } from "../utils/localStorage";
+import FilmRating from "../components/FilmRating";
 
 // replacing the useEffect with queries and muatations 
 const SavedMovies = () => {
@@ -75,11 +79,20 @@ const SavedMovies = () => {
                     variant="top"
                   />
                 ) : null}
-                <div className="card-body">
-                  <h5>{movie.title}</h5>
-                  <p className="small">Bad Banana Rating: {movie.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({movie.voteCount} reviews)</p>
-                  <p>{movie.description}</p>
-                  <button
+
+                <Card.Body className="card-body">
+                  <Card.Title>{movie.title}</Card.Title>
+                  <FilmRating
+                  movieId={movie.id}
+                  movieRating={movie.rating}/>
+                  <Card.Text className="medium">Bad Banana Rating: <b>{movie.rating}</b> <span>({movie.voteCount} reviews)</span></Card.Text>
+                  {movie.providers
+                    ? <Card.Link href={movie.providers}>Where to Watch 👀</Card.Link>
+                    : <span>Watchlist Not Available</span>
+                  }
+                  <Card.Text>{movie.description}</Card.Text>
+                  <Button
+
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteMovie(movie.movieId)}
                   >
@@ -89,8 +102,10 @@ const SavedMovies = () => {
               </div>
             );
           })}
-        </div>
-      </div>
+
+        </CardColumns>
+      </Container>
+            <Footer />
     </>
   );
 };

@@ -39,6 +39,7 @@ export const SAVE_MOVIE = gql`
         title
         image
         link
+        providers
       }
     }
   }
@@ -58,6 +59,7 @@ export const REMOVE_MOVIE = gql`
         movieId
         image
         link
+        providers
       }
     }
   }

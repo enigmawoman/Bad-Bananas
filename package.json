@@ -16,6 +16,9 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.13",
     "mongoose-float": "^1.0.4",
     "nodemon": "^2.0.21",
     "react-icons": "^4.8.0"

@@ -1,6 +1,11 @@
-body {
-  font-family: 'Rubik', sans-serif;
 
+
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Code+Pro&display=swap");
+
+
+body{
+  font-family: 'Source Code Pro', monospace;
 }
 
 h1,
@@ -16,6 +21,7 @@ h6 {
   font-weight: 200;
   font-style: italic;
 }
+
 
 .card-coloumns{
   display:flex;
@@ -56,3 +62,11 @@ h6 {
   border-radius: 10px;
 }
  
+
+
+.search{
+  background-color: #FFE082;
+  color: azure;
+}
+
+
