@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import {
-//   Jumbotron,
-//   Container,
-//   Col,
-//   Form,
-//   Button,
-// } from "react-bootstrap";
+import {
+  Jumbotron,
+} from "react-bootstrap";
 
 import { GiBananaPeeled } from "react-icons/gi";
 
