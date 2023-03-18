@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
   Jumbotron,
+  Container,
+  Col,
+  Form,
+  Button,
+  Card,
+  CardColumns,
 } from "react-bootstrap";
 
 import Footer from '../components/Footer'
@@ -74,7 +80,7 @@ const SearchMovies = () => {
       setLoading(false);
     });
   });
-}, []);
+  }, []);
 
   console.log(topMovies)
 
@@ -235,11 +241,11 @@ const SearchMovies = () => {
         </Container>
       </Jumbotron>
 
-      <div className="container">
+      <Container className="container">
        
           {searchedMovies.length
             ? 
-        <div className="card-coloumns">
+        <CardColumns className="card-coloumns">
           {searchedMovies.map((movie) => {
             return (
               <div className="card-container" key={movie.movieId}>
@@ -280,11 +286,11 @@ const SearchMovies = () => {
                         : "Add to Watchlist"}
                     </button>
                   )}
-                </div>
+                </Card.Body>
               </div>
             );
           })}
-        </div>
+        </CardColumns>
         : 
         <>
 
@@ -333,16 +339,16 @@ const SearchMovies = () => {
                         : "Add to Watchlist"}
                     </button>
                   )}
-                </div>
+                </Card.Body>
               </div>
             );
           })}
-        </div>
+        </CardColumns>
       </>
        }
-
-      </Container>
-            <Footer />
+    </Container>
+     
+  <Footer />
 
     </>
   );
