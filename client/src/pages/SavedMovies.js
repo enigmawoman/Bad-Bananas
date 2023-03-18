@@ -1,9 +1,9 @@
 import {
   Jumbotron,
   Container,
-  CardColumns,
-  Card,
-  Button,
+  // CardColumns,
+  // Card,
+  // Button,
 } from "react-bootstrap";
 
 import { GiBananaPeeled } from "react-icons/gi";
@@ -56,7 +56,7 @@ const SavedMovies = () => {
           <h1>{userData.username}'s WatchList!</h1>
         </Container>
       </Jumbotron>
-      <Container>
+      <div className="container">
         <h2>
           {userData.savedMovies.length
             ? `Viewing ${userData.savedMovies.length} saved ${
@@ -64,33 +64,33 @@ const SavedMovies = () => {
               }:`
             : "Nothing here to watch... add a movie!"}
         </h2>
-        <CardColumns>
+        <div className="card-coloumns">
           {userData.savedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border="dark">
+              <div className="card-container" key={movie.movieId}>
                 {movie.image ? (
-                  <Card.Img
+                  <div className="image-container"
                     src={movie.image}
                     alt={`The cover for ${movie.title}`}
                     variant="top"
                   />
                 ) : null}
-                <Card.Body>
-                  <Card.Title>{movie.title}</Card.Title>
+                <div className="card-body">
+                  <h5>{movie.title}</h5>
                   <p className="small">Bad Banana Rating: {movie.rating} <GiBananaPeeled style={{fontSize: "32px", color: "#FFE082"}} /> ({movie.voteCount} reviews)</p>
-                  <Card.Text>{movie.description}</Card.Text>
-                  <Button
+                  <p>{movie.description}</p>
+                  <button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteMovie(movie.movieId)}
                   >
                     Remove from Watchlist!
-                  </Button>
-                </Card.Body>
-              </Card>
+                  </button>
+                </div>
+              </div>
             );
           })}
-        </CardColumns>
-      </Container>
+        </div>
+      </div>
     </>
   );
 };

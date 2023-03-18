@@ -170,7 +170,7 @@ const SearchMovies = () => {
 
   return (
     <>
-      {/* <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Search for a Movie!</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -193,7 +193,7 @@ const SearchMovies = () => {
             </Form.Row>
           </Form>
         </Container>
-      </Jumbotron> */}
+      </Jumbotron>
 
       <div className="container">
        
@@ -238,7 +238,7 @@ const SearchMovies = () => {
         </div>
         : 
         <>
-        {/* <h2>TODAYS TOP BANANAS : Trending in the UK</h2> */}
+        <h2>TODAYS TOP BANANAS : Trending in the UK</h2>
         <div className="card-coloumns">
           {topMovies.map((topMovie) => {
             return (
