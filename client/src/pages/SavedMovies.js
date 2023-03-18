@@ -1,9 +1,9 @@
 import {
   Jumbotron,
   Container,
-  // CardColumns,
-  // Card,
-  // Button,
+  CardColumns,
+  Card,
+  Button,
 } from "react-bootstrap";
 
 import Footer from '../components/Footer'
@@ -60,7 +60,7 @@ const SavedMovies = () => {
           <h1>{userData.username}'s WatchList!</h1>
         </Container>
       </Jumbotron>
-      <div className="container">
+      <Container className="container">
         <h2>
           {userData.savedMovies.length
             ? `Viewing ${userData.savedMovies.length} saved ${
@@ -68,16 +68,18 @@ const SavedMovies = () => {
               }:`
             : "Nothing here to watch... add a movie!"}
         </h2>
-        <div className="card-coloumns">
+        <CardColumns className="card-coloumns">
           {userData.savedMovies.map((movie) => {
             return (
               <div className="card-container" key={movie.movieId}>
                 {movie.image ? (
-                  <div className="image-container"
+                  <div className="image-container">
+                  <img
                     src={movie.image}
                     alt={`The cover for ${movie.title}`}
                     variant="top"
                   />
+                  </div>
                 ) : null}
 
                 <Card.Body className="card-body">
@@ -97,8 +99,8 @@ const SavedMovies = () => {
                     onClick={() => handleDeleteMovie(movie.movieId)}
                   >
                     Remove from Watchlist!
-                  </button>
-                </div>
+                  </Button>
+                </Card.Body>
               </div>
             );
           })}
