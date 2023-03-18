@@ -1,5 +1,6 @@
 
 
+
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Code+Pro&display=swap");
 
 
@@ -17,13 +18,55 @@ h6 {
 }
 
 .small {
-  font-weight: 300;
+  font-weight: 200;
   font-style: italic;
 }
+
+
+.card-coloumns{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-right: 0;
+
+}
+
+.card-container:hover{
+  transition: .3s;
+  box-shadow:0px 0px 15px 0px;
+}
+
+.image-container img{
+   overflow:hidden;
+   height: 450px; 
+   align-items: center;
+   object-fit: cover;
+}
+.card-container{
+  width:300px;
+  border-style: solid;
+  border-color:#6D4C41;
+  box-shadow: 5px;
+  margin:20px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px 5px;
+
+}
+
+.btn{
+  padding:6px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color:#FFE082;
+  border-color:#9C7C70;
+  border-radius: 10px;
+}
+ 
 
 
 .search{
   background-color: #FFE082;
   color: azure;
 }
+
 

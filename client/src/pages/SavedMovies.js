@@ -1,9 +1,9 @@
 import {
   Jumbotron,
   Container,
-  CardColumns,
-  Card,
-  Button,
+  // CardColumns,
+  // Card,
+  // Button,
 } from "react-bootstrap";
 
 import Footer from '../components/Footer'
@@ -60,7 +60,7 @@ const SavedMovies = () => {
           <h1>{userData.username}'s WatchList!</h1>
         </Container>
       </Jumbotron>
-      <Container>
+      <div className="container">
         <h2>
           {userData.savedMovies.length
             ? `Viewing ${userData.savedMovies.length} saved ${
@@ -68,18 +68,19 @@ const SavedMovies = () => {
               }:`
             : "Nothing here to watch... add a movie!"}
         </h2>
-        <CardColumns>
+        <div className="card-coloumns">
           {userData.savedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border="dark">
+              <div className="card-container" key={movie.movieId}>
                 {movie.image ? (
-                  <Card.Img
+                  <div className="image-container"
                     src={movie.image}
                     alt={`The cover for ${movie.title}`}
                     variant="top"
                   />
                 ) : null}
-                <Card.Body>
+
+                <Card.Body className="card-body">
                   <Card.Title>{movie.title}</Card.Title>
                   <FilmRating
                   movieId={movie.id}
@@ -91,15 +92,17 @@ const SavedMovies = () => {
                   }
                   <Card.Text>{movie.description}</Card.Text>
                   <Button
+
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteMovie(movie.movieId)}
                   >
                     Remove from Watchlist!
-                  </Button>
-                </Card.Body>
-              </Card>
+                  </button>
+                </div>
+              </div>
             );
           })}
+
         </CardColumns>
       </Container>
             <Footer />

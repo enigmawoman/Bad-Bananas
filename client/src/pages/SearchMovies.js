@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Jumbotron,
-  Container,
-  Col,
-  Form,
-  Button,
-  Card,
-  CardColumns,
 } from "react-bootstrap";
 
 import Footer from '../components/Footer'
@@ -22,7 +16,9 @@ import FilmRating from "../components/FilmRating";
 //import { API_KEY } from "../../.env"
 
 import Auth from "../utils/auth";
+
 import { margin } from "@mui/system";
+
 //import TopMovies from "../components/TopMovies";
 
 
@@ -239,22 +235,25 @@ const SearchMovies = () => {
         </Container>
       </Jumbotron>
 
-      <Container>
+      <div className="container">
        
           {searchedMovies.length
             ? 
-        <CardColumns>
+        <div className="card-coloumns">
           {searchedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border="dark">
+              <div className="card-container" key={movie.movieId}>
                 {movie.image ? (
-                  <Card.Img
+                  <div className="image-container">
+                  <img
                     src={movie.image}
                     alt={`The cover for ${movie.title}`}
                     variant="top"
                   />
+                  </div>
                 ) : null}
-                <Card.Body>
+
+                <Card.Body className="card-body">
                   <Card.Title>{movie.title}</Card.Title>
                   <FilmRating
                   movieId={movie.id}
@@ -265,12 +264,13 @@ const SearchMovies = () => {
                     : <span>Watchlist Not Available</span>
                   }
                   <Card.Text>{movie.description}</Card.Text>
+
                   {Auth.loggedIn() && (
-                    <Button
+                    <button
                       disabled={savedMovieIds?.some(
                         (savedMovieId) => savedMovieId === movie.movieId
                       )}
-                      className="btn-block btn-info"
+                      className="btn"
                       onClick={() => handleSaveMovie(movie.movieId)}
                     >
                       {savedMovieIds?.some(
@@ -278,29 +278,34 @@ const SearchMovies = () => {
                       )
                         ? "Already in your Watchlist!"
                         : "Add to Watchlist"}
-                    </Button>
+                    </button>
                   )}
-                </Card.Body>
-              </Card>
+                </div>
+              </div>
             );
           })}
-        </CardColumns>
+        </div>
         : 
         <>
+
       
         <h2>TODAYS TOP BANANAs : Trending in the UK</h2>
-        <CardColumns>
+        <CardColumns className="card-coloumns">
+
           {topMovies.map((topMovie) => {
             return (
-              <Card key={topMovie.id} border="dark">
+              <div className="card-container" key={topMovie.id} >
                 {topMovie.image ? (
-                  <Card.Img
+                  <div className="image-container">
+                  <img
                     src={topMovie.image}
                     alt={`The cover for ${topMovie.title}`}
                     variant="top"
                   />
+                  </div>
                 ) : null}
-                <Card.Body>
+
+                <Card.Body className="card-body">
                   <Card.Title>{topMovie.title}</Card.Title>
                   <FilmRating
                   movieId={topMovie.id}
@@ -312,12 +317,13 @@ const SearchMovies = () => {
                   }
 
                   <Card.Text>{topMovie.description}</Card.Text>
+
                   {Auth.loggedIn() && (
-                    <Button
+                    <button 
                       disabled={savedMovieIds?.some(
                         (savedMovieId) => savedMovieId === topMovie.movieId
                       )}
-                      className="btn-block btn-info"
+                      className="btn"
                       onClick={() => handleSaveTopMovie(topMovie.movieId)}
                     >
                       {savedMovieIds?.some(
@@ -325,17 +331,19 @@ const SearchMovies = () => {
                       )
                         ? "Already in your Watchlist!"
                         : "Add to Watchlist"}
-                    </Button>
+                    </button>
                   )}
-                </Card.Body>
-              </Card>
+                </div>
+              </div>
             );
           })}
-        </CardColumns>
+        </div>
       </>
        }
+
       </Container>
             <Footer />
+
     </>
   );
 };
