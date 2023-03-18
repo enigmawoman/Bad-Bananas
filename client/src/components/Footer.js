@@ -5,11 +5,11 @@ import { FaChevronRight } from "react-icons/fa";
 
 const Footer = () => {
     return ( 
-        <footer class="pb-4 pt-5 bg-light text-secondary">
-            <div class="text-center text-md-left">
-            <div class="row text-center text-md-left">
-            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h5 class="mb-4 font-weight-bold footer-title">BadBanana🍌</h5>
+        <footer className="pb-4 pt-5 bg-light text-secondary">
+            <div className="text-center text-md-left">
+            <div className="row text-center text-md-left">
+            <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 className="mb-4 font-weight-bold footer-title">BadBanana🍌</h5>
             <p>
                 1234 BadBanana Street<br/>
                 Banana, NW10 7TK <br/>
@@ -19,30 +19,30 @@ const Footer = () => {
             </p>
             </div>
 
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h5 class="mb-4 font-weight-bold footer-title">Useful Links</h5>
+            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h5 className="mb-4 font-weight-bold footer-title">Useful Links</h5>
             <p> 
-                <FaChevronRight class="chevron"/>
-                <a href="#" class="text-secondary hover:underline"> About</a></p>
+                <FaChevronRight className="chevron"/>
+                <a href="#" className="text-secondary hover:underline"> About</a></p>
             <p> 
-            <FaChevronRight class="chevron"/>
-           <a href="#" class="text-secondary hover:underline"> Privacy Policy</a></p>
+            <FaChevronRight className="chevron"/>
+           <a href="#" className="text-secondary hover:underline"> Privacy Policy</a></p>
             <p> 
-            <FaChevronRight class="chevron"/>
-            <a href="#" class="text-secondary hover:underline"> Licensing</a></p>
+            <FaChevronRight className="chevron"/>
+            <a href="#" className="text-secondary hover:underline"> Licensing</a></p>
             <p> 
-            <FaChevronRight class="chevron"/>
-                <a href="#" class="text-secondary hover:underline"> Contact</a></p>
+            <FaChevronRight className="chevron"/>
+                <a href="#" className="text-secondary hover:underline"> Contact</a></p>
             </div>
-            <div class= "col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                <h5 class="mb-4 font-weight-bold footer-title">Join And Subscribe</h5>
+            <div className= "col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h5 className="mb-4 font-weight-bold footer-title">Join And Subscribe</h5>
                 <p>Join 30,000+ others and never miss out on new movies</p>
             <form>
-                <div class="row">
-                <input type="text" class="input" placeholder="email@example.com"/>
-                <button class="button">Subscribe</button>
+                <div className="row">
+                <input type="text" className="input" placeholder="email@example.com"/>
+                <button className="button">Subscribe</button>
                 </div>
-                <span>© 2023 <a href="https://www.rottentomatoes.com/" class="hover:underline text-secondary ">BadBanana™</a>. All Rights Reserved.
+                <span>© 2023 <a href="https://www.rottentomatoes.com/" className="hover:underline text-secondary ">BadBanana™</a>. All Rights Reserved.
             </span>
             </form>
             </div>

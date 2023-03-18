@@ -7,6 +7,9 @@ import {
   Button,
   Card,
   CardColumns,
+  Nav,
+  Modal,
+  Tab,
 } from "react-bootstrap";
 
 import Footer from '../components/Footer'
@@ -17,6 +20,8 @@ import { useMutation } from "@apollo/client";
 import { SAVE_MOVIE } from "../utils/mutations";
 import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
 import FilmRating from "../components/FilmRating";
+import UserRating from "../components/UserRating";
+
 //import Rating from '../components/Rating'
 
 //import { API_KEY } from "../../.env"
@@ -41,6 +46,8 @@ const SearchMovies = () => {
 
   const [topMovies, setTopMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+
+
 
   // the API for most popular movies: https://api.themoviedb.org/3/movie/top_rated?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e&language=en-US&page=1
 
@@ -209,7 +216,7 @@ const SearchMovies = () => {
     <>
       <Jumbotron fluid className="search">
         <Container className="movie">
-       <iframe width="700" height="430" src="https://www.youtube.com/embed/D-3sg-tyHdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+       <iframe width="700" height="430" src="https://www.youtube.com/embed/D-3sg-tyHdo" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
         </Container>
         <Container>
           <h1 className="Stype"> SEARCH A MOVIE</h1>
@@ -262,7 +269,7 @@ const SearchMovies = () => {
                 <Card.Body className="card-body">
                   <Card.Title>{movie.title}</Card.Title>
                   <FilmRating
-                  movieId={movie.id}
+                  movieId={movie.movieId}
                   movieRating={movie.rating}/>
                   <Card.Text className="medium">Bad Banana Rating: <b>{movie.rating}</b> <span>({movie.voteCount} reviews)</span></Card.Text>
                   {movie.providers
@@ -272,6 +279,7 @@ const SearchMovies = () => {
                   <Card.Text>{movie.description}</Card.Text>
 
                   {Auth.loggedIn() && (
+                    <>
                     <button
                       disabled={savedMovieIds?.some(
                         (savedMovieId) => savedMovieId === movie.movieId
@@ -285,6 +293,8 @@ const SearchMovies = () => {
                         ? "Already in your Watchlist!"
                         : "Add to Watchlist"}
                     </button>
+                    
+                    </>
                   )}
                 </Card.Body>
               </div>
@@ -300,7 +310,7 @@ const SearchMovies = () => {
 
           {topMovies.map((topMovie) => {
             return (
-              <div className="card-container" key={topMovie.id} >
+              <div className="card-container" key={topMovie.movieId} >
                 {topMovie.image ? (
                   <div className="image-container">
                   <img
@@ -314,7 +324,7 @@ const SearchMovies = () => {
                 <Card.Body className="card-body">
                   <Card.Title>{topMovie.title}</Card.Title>
                   <FilmRating
-                  movieId={topMovie.id}
+                  movieId={topMovie.movieId}
                   movieRating={topMovie.rating}/>
                   <Card.Text className="medium">Bad Banana Rating: <b>{topMovie.rating}</b> <span>({topMovie.voteCount} reviews)</span></Card.Text>
                   {topMovie.providers
@@ -325,6 +335,7 @@ const SearchMovies = () => {
                   <Card.Text>{topMovie.description}</Card.Text>
 
                   {Auth.loggedIn() && (
+                    <>
                     <button 
                       disabled={savedMovieIds?.some(
                         (savedMovieId) => savedMovieId === topMovie.movieId
@@ -338,8 +349,15 @@ const SearchMovies = () => {
                         ? "Already in your Watchlist!"
                         : "Add to Watchlist"}
                     </button>
+                    <Card.Text>Your Rating: </Card.Text>
+                    <UserRating movieId={topMovie.movieId} movieTitle={topMovie.title}/>
+                    </>
                   )}
-                </Card.Body>
+                  
+              
+               
+             
+              </Card.Body>
               </div>
             );
           })}
@@ -347,6 +365,7 @@ const SearchMovies = () => {
       </>
        }
     </Container>
+    
      
   <Footer />
 
