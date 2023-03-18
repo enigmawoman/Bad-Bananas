@@ -12,7 +12,7 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar class="bg-white variant-dark expand-lg text-black">
+      <Navbar className="bg-white variant-dark expand-lg text-black">
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
             BAD BANANAS
