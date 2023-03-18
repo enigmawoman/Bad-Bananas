@@ -12,16 +12,16 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar class="bg-white variant-dark expand-lg text-black">
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            The MovieDB Search
+            BAD BANANAS
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/'>
-                Search For Movies
+                SEARCH FOR MOVIES
               </Nav.Link>
               {/* if user is logged in show saved movies and logout */}
               {Auth.loggedIn() ? (
@@ -29,10 +29,11 @@ const AppNavbar = () => {
                   <Nav.Link as={Link} to='/saved'>
                     See Your WatchList
                   </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  <Nav.Link onClick={Auth.logout}>LOGOUT</Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)}>LOGIN/SIGNUP</Nav.Link>
+                
               )}
             </Nav>
           </Navbar.Collapse>
@@ -50,10 +51,10 @@ const AppNavbar = () => {
             <Modal.Title id='signup-modal'>
               <Nav variant='pills'>
                 <Nav.Item>
-                  <Nav.Link eventKey='login'>Login</Nav.Link>
+                  <Nav.Link eventKey='login'>LOGIN</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
+                  <Nav.Link eventKey='signup'>SIGNUP</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Modal.Title>

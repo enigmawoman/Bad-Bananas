@@ -1,5 +1,10 @@
-body {
-  font-family: 'Rubik', sans-serif;
+
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Code+Pro&display=swap");
+
+
+body{
+  font-family: 'Source Code Pro', monospace;
 }
 
 h1,

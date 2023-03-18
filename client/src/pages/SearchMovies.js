@@ -22,6 +22,7 @@ import FilmRating from "../components/FilmRating";
 //import { API_KEY } from "../../.env"
 
 import Auth from "../utils/auth";
+import { margin } from "@mui/system";
 //import TopMovies from "../components/TopMovies";
 
 
@@ -205,30 +206,36 @@ const SearchMovies = () => {
   return (
     <>
       <Jumbotron fluid className="search">
-        <Container>
+        <Container className="movie">
        <iframe width="700" height="430" src="https://www.youtube.com/embed/D-3sg-tyHdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </Container>
         <Container>
-          <h1>Search for a Movie!</h1>
-          <Form onSubmit={handleFormSubmit}>
+          <h1 className="Stype"> SEARCH A MOVIE</h1>
+          
+   
+          <Form className="Btype" onSubmit={handleFormSubmit}>
             <Form.Row>
+              <div className="Ctype">
               <Col xs={12} md={8}>
                 <Form.Control
                   name="searchInput"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
+                  style={{ width:"105%", borderRadius: "25px"}}
                   size="lg"
-                  placeholder="Search for a movie"
+                  placeholder="Search top movies..."
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg">
-                  Search
+                <Button type="submit" variant="success" size="lg"   style={{ width: "100%", marginLeft: "10px", borderRadius:"30px"}}>
+                  SUMBIT
                 </Button>
               </Col>
+              </div>
             </Form.Row>
           </Form>
+      
         </Container>
       </Jumbotron>
 
