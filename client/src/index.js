@@ -5,6 +5,11 @@ import './index.css';
 import './footer.css';
 import './navbar.css';
 import './loginsignup.css';
+import './accordian.css';
+import './userrating.css';
+
+
+
 import App from './App';
 
 ReactDOM.render(

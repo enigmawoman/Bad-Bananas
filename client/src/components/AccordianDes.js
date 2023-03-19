@@ -5,6 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+
 export default function AccordianDes({overview}) {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -13,18 +14,20 @@ export default function AccordianDes({overview}) {
   };
 
   return (
-    <div>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+    <div className="accordian-style">
+      <Accordion  expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
+          
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
+          
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
             Movie Description
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className="accordian-description">
           <Typography>
             {overview}
           </Typography>
