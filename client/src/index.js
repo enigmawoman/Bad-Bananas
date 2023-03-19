@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import './footer.css';
 import './navbar.css';
+import './loginsignup.css';
 import App from './App';
 
 ReactDOM.render(

@@ -1,0 +1,9 @@
+.nav-link {
+    color:#9C7C70;
+  }
+ 
+div.modal-content{
+    border-width: 2px;
+    border-color: black;
+     border-radius: 10px;
+}
