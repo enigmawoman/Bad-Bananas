@@ -6,3 +6,33 @@
 .card-rating span {
     font-weight: bolder;
 }
+
+.watchlist{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #9C7C70;
+    color: rgb(255, 255, 255);
+    background-color:#9C7C70;
+    border-radius: 7px;
+   margin-top: 10px ;
+}
+.rate{
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(88, 56, 23);
+    color: rgb(255, 255, 255);
+    background-color:rgb(88, 56, 23);
+    border-radius: 7px;
+   margin-top: 10px ;
+}
+ 
+.watch{
+
+    border-style: solid;
+    border-color:#FFE082;
+    color: rgb(255, 255, 255);
+    background-color: #FFE082;
+    border-radius: 7px;
+   margin-bottom: 10px ;
+   width: 255px;
+}
