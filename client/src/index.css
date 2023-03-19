@@ -1,10 +1,8 @@
 
-
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Code+Pro&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 body{
-  font-family: 'Source Code Pro', monospace;
+  font-family: 'Rubik', monospace;
 }
 
 h1,
@@ -13,7 +11,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family: 'Rubik', monospace;
 }
 
 .small {
