@@ -1,22 +1,26 @@
+
 .footer-title {
-    color: #FFE082;
-  }
-  
-  .chevron {
-    color: #6D4C41; 
-  }
-  
-  .button {
+  color: #FFE082;
+}
+
+.chevron {
+  color: #6D4C41; 
+}
+
+.button {
+padding: 0.5rem; 
+background-color: #6D4C41; 
+width: 33.333333%; 
+color: white;
+}
+
+.input {
   padding: 0.5rem; 
-  background-color:#FFE082; 
-  width: 33.333333%; 
-  color: white;
-  }
-  
-  .input {
-    padding: 0.5rem; 
-  background-color: #E5E7EB; 
-  color: #6B7280; 
-  width: 66.666667%; 
-  }
-  
+background-color: #E5E7EB; 
+color: #6B7280; 
+width: 66.666667%; 
+}
+
+.button:hover {
+background-color: #9C7C70
+}
