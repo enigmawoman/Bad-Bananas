@@ -264,7 +264,7 @@ const SearchMovies = () => {
                   movieRating={movie.rating}/>
                   <Card.Text className="medium">Bad Banana Rating: <b>{movie.rating}</b> <span>({movie.voteCount} reviews)</span></Card.Text>
                   {movie.providers
-                    ? <Card.Link href={movie.providers} target="_blank">Where to Watch 👀</Card.Link>
+                     ? <Button className="watch"  variant="primary" href={movie.providers} target="_blank">WHERE TO WATCH</Button>
                     : <span>Watchlist Not Available</span>
                   }
                   <AccordianDes overview={movie.description} />
@@ -319,7 +319,7 @@ const SearchMovies = () => {
                   movieRating={topMovie.rating}/>
                   <Card.Text className="medium">Bad Banana Rating: <b>{topMovie.rating}</b> <span>({topMovie.voteCount} reviews)</span></Card.Text>
                   {topMovie.providers
-                    ? <Card.Link href={topMovie.providers} target="_blank">Where to Watch 👀</Card.Link>
+                     ? <Button className="watch"  variant="primary" href={topMovie.providers} target="_blank">WHERE TO WATCH</Button>
                     : <span>Watchlist Not Available</span>
                   }
 
