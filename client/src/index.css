@@ -17,6 +17,10 @@ h6 {
   font-family: 'Rubik Mono One', sans-serif;
 }
 
+.watch-list-name {
+  text-transform: uppercase;
+}
+
 .small {
   font-weight: 200;
   font-style: italic;

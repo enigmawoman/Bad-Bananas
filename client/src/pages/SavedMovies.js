@@ -4,6 +4,7 @@ import {
   CardColumns,
   Card,
   Button,
+  Accordion
 } from "react-bootstrap";
 
 import Footer from '../components/Footer'
@@ -17,6 +18,8 @@ import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { removeMovieId } from "../utils/localStorage";
 import FilmRating from "../components/FilmRating";
+import UserRating from "../components/UserRating";
+import AccordianDes from "../components/AccordianDes";
 
 // replacing the useEffect with queries and muatations 
 const SavedMovies = () => {
@@ -57,7 +60,7 @@ const SavedMovies = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>{userData.username}'s WatchList!</h1>
+          <h1 className="watch-list-name">{userData.username}'s WatchList!</h1>
         </Container>
       </Jumbotron>
       <Container className="container">
@@ -89,10 +92,10 @@ const SavedMovies = () => {
                   movieRating={movie.rating}/>
                   <Card.Text className="medium">Bad Banana Rating: <b>{movie.rating}</b> <span>({movie.voteCount} reviews)</span></Card.Text>
                   {movie.providers
-                    ? <Card.Link href={movie.providers}>Where to Watch 👀</Card.Link>
+                    ? <Card.Link href={movie.providers} target="_blank">Where to Watch 👀</Card.Link>
                     : <span>Watchlist Not Available</span>
                   }
-                  <Card.Text>{movie.description}</Card.Text>
+                  <AccordianDes overview={movie.description} />
                   <Button
 
                     className="btn-block btn-danger"
@@ -100,6 +103,7 @@ const SavedMovies = () => {
                   >
                     Remove from Watchlist!
                   </Button>
+                    <UserRating movieId={movie.movieId} movieTitle={movie.title}/>
                 </Card.Body>
               </div>
             );
