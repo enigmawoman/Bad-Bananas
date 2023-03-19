@@ -66,6 +66,13 @@ h6 {
   border-radius: 10px;
 }
  
+
+.watchlist.button.btn{
+  background-color: #FFE082;
+
+}
+
+
 .btn:hover{
   background-color:#9C7C70;
   color: white;
