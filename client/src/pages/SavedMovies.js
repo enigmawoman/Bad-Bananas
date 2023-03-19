@@ -58,7 +58,7 @@ const SavedMovies = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light search">
+      <Jumbotron fluid className="text-light" style={{backgroundColor:"#FFE082"}}>
         <Container>
           <h1 className="watch-list-name">{userData.username}'s WatchList!</h1>
         </Container>
