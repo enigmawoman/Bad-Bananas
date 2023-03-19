@@ -6,6 +6,14 @@ export const getSavedMovieIds = () => {
   return savedMovieIds;
 };
 
+export const getSavedUserRatings = () => {
+  const savedRating = localStorage.getItem('ratings')
+    ? JSON.parse(localStorage.getItem('ratings'))
+    : [];
+
+  return savedRating;
+};
+
 export const saveMovieIds = (movieIdArr) => {
   console.log(movieIdArr, "saving movie to LS")
   if (movieIdArr.length) {

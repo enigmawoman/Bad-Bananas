@@ -10,6 +10,8 @@ const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
 
+  
+
   return (
     <>
       <Navbar className="bg-white variant-dark expand-lg text-black">

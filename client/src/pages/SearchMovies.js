@@ -13,24 +13,17 @@ import {
 } from "react-bootstrap";
 
 import Footer from '../components/Footer'
-
-import { GiBananaPeeled } from "react-icons/gi";
-
 import { useMutation } from "@apollo/client";
 import { SAVE_MOVIE } from "../utils/mutations";
 import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
 import FilmRating from "../components/FilmRating";
 import UserRating from "../components/UserRating";
+import AccordianDes from "../components/AccordianDes";
 
-//import Rating from '../components/Rating'
-
-//import { API_KEY } from "../../.env"
 
 import Auth from "../utils/auth";
+import { Divider } from "@mui/material";
 
-import { margin } from "@mui/system";
-
-//import TopMovies from "../components/TopMovies";
 
 
 const SearchMovies = () => {
@@ -47,8 +40,7 @@ const SearchMovies = () => {
   const [topMovies, setTopMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
-
+  
   // the API for most popular movies: https://api.themoviedb.org/3/movie/top_rated?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e&language=en-US&page=1
 
   useEffect(() => {
@@ -238,7 +230,7 @@ const SearchMovies = () => {
               </Col>
               <Col xs={12} md={4}>
                 <Button type="submit" variant="success" size="lg"   style={{ width: "100%", marginLeft: "10px", borderRadius:"30px"}}>
-                  SUMBIT
+                  SUBMIT
                 </Button>
               </Col>
               </div>
@@ -273,10 +265,10 @@ const SearchMovies = () => {
                   movieRating={movie.rating}/>
                   <Card.Text className="medium">Bad Banana Rating: <b>{movie.rating}</b> <span>({movie.voteCount} reviews)</span></Card.Text>
                   {movie.providers
-                    ? <Card.Link href={movie.providers}>Where to Watch 👀</Card.Link>
+                    ? <Card.Link href={movie.providers} target="_blank">Where to Watch 👀</Card.Link>
                     : <span>Watchlist Not Available</span>
                   }
-                  <Card.Text>{movie.description}</Card.Text>
+                  <AccordianDes overview={movie.description} />
 
                   {Auth.loggedIn() && (
                     <>
@@ -293,7 +285,7 @@ const SearchMovies = () => {
                         ? "Already in your Watchlist!"
                         : "Add to Watchlist"}
                     </button>
-                    
+                    <UserRating movieId={movie.movieId} movieTitle={movie.title}/>
                     </>
                   )}
                 </Card.Body>
@@ -328,11 +320,12 @@ const SearchMovies = () => {
                   movieRating={topMovie.rating}/>
                   <Card.Text className="medium">Bad Banana Rating: <b>{topMovie.rating}</b> <span>({topMovie.voteCount} reviews)</span></Card.Text>
                   {topMovie.providers
-                    ? <Card.Link href={topMovie.providers}>Where to Watch 👀</Card.Link>
+                    ? <Card.Link href={topMovie.providers} target="_blank">Where to Watch 👀</Card.Link>
                     : <span>Watchlist Not Available</span>
                   }
 
-                  <Card.Text>{topMovie.description}</Card.Text>
+                  <AccordianDes overview={topMovie.description} />
+                  
 
                   {Auth.loggedIn() && (
                     <>
@@ -349,7 +342,7 @@ const SearchMovies = () => {
                         ? "Already in your Watchlist!"
                         : "Add to Watchlist"}
                     </button>
-                    <Card.Text>Your Rating: </Card.Text>
+                    
                     <UserRating movieId={topMovie.movieId} movieTitle={topMovie.title}/>
                     </>
                   )}
