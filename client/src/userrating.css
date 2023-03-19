@@ -1,0 +1,8 @@
+.card-rating {
+    margin-top: 20px;
+   font-style: italic;
+}
+
+.card-rating span {
+    font-weight: bolder;
+}

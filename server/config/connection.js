@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-
-
-
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:/badBananasDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
