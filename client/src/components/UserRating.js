@@ -103,7 +103,7 @@ function UserRating({ movieId, movieTitle }) {
     <>
       <Card.Text className="card-rating">Your Rating: <span>{rating || 'Rate this movie'}</span> </Card.Text>
       
-      <button className="btn" onClick={() => setShowModal(true)}>Rate Film</button>
+      <button className="rate" onClick={() => setShowModal(true)}>RATE FILM</button>
       {/* set modal data up */}
       <Modal
         size='lg'

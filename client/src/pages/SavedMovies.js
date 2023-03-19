@@ -58,7 +58,7 @@ const SavedMovies = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light search">
+      <Jumbotron fluid className="text-light" style={{backgroundColor:"#FFE082"}}>
         <Container>
           <h1 className="watch-list-name">{userData.username}'s WatchList!</h1>
         </Container>
@@ -92,7 +92,7 @@ const SavedMovies = () => {
                   movieRating={movie.rating}/>
                   <Card.Text className="medium">Bad Banana Rating: <b>{movie.rating}</b> <span>({movie.voteCount} reviews)</span></Card.Text>
                   {movie.providers
-                    ? <Card.Link href={movie.providers} target="_blank">Where to Watch 👀</Card.Link>
+                     ? <Button className="watch"  variant="primary" href={movie.providers} target="_blank">WHERE TO WATCH</Button>
                     : <span>Watchlist Not Available</span>
                   }
                   <AccordianDes overview={movie.description} />

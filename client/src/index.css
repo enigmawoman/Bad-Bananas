@@ -1,11 +1,13 @@
 
 
 
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Code+Pro&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+
 
 
 body{
-  font-family: 'Source Code Pro', monospace;
+  font-family: 'Oswald', monospace;
 }
 
 h1,
@@ -14,7 +16,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 .watch-list-name {
@@ -64,6 +66,13 @@ h6 {
   border-radius: 10px;
 }
  
+
+.watchlist.button.btn{
+  background-color: #FFE082;
+
+}
+
+
 .btn:hover{
   background-color:#9C7C70;
   color: white;
