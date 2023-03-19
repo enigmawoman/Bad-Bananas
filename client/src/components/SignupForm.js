@@ -4,6 +4,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { borderColor, shadows } from '@mui/system';
 
 const SignupForm = () => {
   // set initial form state
@@ -51,17 +52,19 @@ const SignupForm = () => {
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form 
+      noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your signup!
         </Alert>
 
-        <Form.Group>
-          <Form.Label htmlFor='username'>Username</Form.Label>
+        <Form.Group >
+          <Form.Label htmlFor='username'>USERNAME</Form.Label>
           <Form.Control
+          style={{borderWidth:"1px", borderColor:"black", borderStyle:"solid"}}
             type='text'
-            placeholder='Your username'
+            placeholder='Your username...'
             name='username'
             onChange={handleInputChange}
             value={userFormData.username}
@@ -71,10 +74,11 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
+          <Form.Label htmlFor='email'>EMAIL</Form.Label>
           <Form.Control
+          style={{borderWidth:"1px", borderColor:"black", borderStyle:"solid"}}
             type='email'
-            placeholder='Your email address'
+            placeholder='Your email address...'
             name='email'
             onChange={handleInputChange}
             value={userFormData.email}
@@ -84,10 +88,11 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
+          <Form.Label htmlFor='password'>PASSWORD</Form.Label>
           <Form.Control
+          style={{borderWidth:"1px", borderColor:"black", borderStyle:"solid"}}
             type='password'
-            placeholder='Your password'
+            placeholder='Your password...'
             name='password'
             onChange={handleInputChange}
             value={userFormData.password}
@@ -96,6 +101,7 @@ const SignupForm = () => {
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
         <Button
+        style={{backgroundColor:"#6D4C41",borderColor:"#6D4C41"}}
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>

@@ -1,8 +1,11 @@
-# 21 MERN: Book Search Engine
+# Bad Banana React App
 
-Refactoring code to take a database from using RESTful APIs to using a GraphQL API built with Apollo Server.
+Final Project: MERN Stack Single-Page Application
 
----
+## User story 
+
+- As developers we want to create a MERN Stack Single-Page Application app application that to allow users to search, save and rate movies
+- AS developers we want an application that allows users to login in and sign up to the website and have access to their saved movies, and ratings on movies as well as to search new movies
 
 **Table of Contents:**
 
@@ -23,56 +26,50 @@ Refactoring code to take a database from using RESTful APIs to using a GraphQL A
 
 ## Description
 
-Taking pre-existing code for a book search application and refactoring the code to take the database from using RESTful APIs to using a GraphQL API built with Apollo Server. This application is built using the MERN stack, which includes the following frameworks, MongoDB, Express.js, React and Node.js.
+This a single page mern applictaion that is developed for a movie data base called bad banana wherebye a user can access. Taking pre-existing code for a book search application and refactoring the code to take the database from using RESTful APIs to using a GraphQL API built with Apollo Server. This application is built using the MERN stack, which includes the following frameworks, MongoDB, Express.js, React and Node.js.
 
 
 ## User Story
 
 
-* AS AN avid reader
-* I WANT to search for new books to read
-* SO THAT I can keep a list of books to purchase
+* AS AN avid movie watcher
+* I WANT to search for movies and ratings
+* SO THAT I can pick the best movies to watch, save and rate
 
 
 
 ## Acceptance Criteria
 
+Use React for the front end.
 
-* GIVEN a book search engine
-* WHEN I load the search engine
-* THEN I am presented with a menu with the options Search for Books and Login/Signup and an input field to search for books and a submit button
-* WHEN I click on the Search for Books menu option
-* THEN I am presented with an input field to search for books and a submit button
-* WHEN I am not logged in and enter a search term in the input field and click the submit button
-* THEN I am presented with several search results, each featuring a book’s title, author, description, image, and a link to that book on the Google Books site
-* WHEN I click on the Login/Signup menu option
-* THEN a modal appears on the screen with a toggle between the option to log in or sign up
-* WHEN the toggle is set to Signup
-* THEN I am presented with three inputs for a username, an email address, and a password, and a signup button
-* WHEN the toggle is set to Login
-* THEN I am presented with two inputs for an email address and a password and login button
-* WHEN I enter a valid email address and create a password and click on the signup button
-* THEN my user account is created and I am logged in to the site
-* WHEN I enter my account’s email address and password and click on the login button
-* THEN I the modal closes and I am logged in to the site
-* WHEN I am logged in to the site
-* THEN the menu options change to Search for Books, an option to see my saved books, and Logout
-* WHEN I am logged in and enter a search term in the input field and click the submit button
-* THEN I am presented with several search results, each featuring a book’s title, author, description, image, and a link to that book on the Google Books site and a button to save a book to my account
-* WHEN I click on the Save button on a book
-* THEN that book’s information is saved to my account
-* WHEN I click on the option to see my saved books
-* THEN I am presented with all of the books I have saved to my account, each featuring the book’s title, author, description, image, and a link to that book on the Google Books site and a button to remove a book from my account
-* WHEN I click on the Remove button on a book
-* THEN that book is deleted from my saved books list
-* WHEN I click on the Logout button
-* THEN I am logged out of the site and presented with a menu with the options Search for Books and Login/Signup and an input field to search for books and a submit button  
+Use GraphQL with a Node.js and Express.js server.
+
+Use MongoDB and the Mongoose ODM for the database.
+
+Use queries and mutations for retrieving, adding, updating, and deleting data.
+
+Be deployed using Heroku (with data).
+
+Have a polished UI.
+
+Be responsive.
+
+Be interactive (i.e., accept and respond to user input).
+
+Include authentication (JWT).
+
+Protect sensitive API key information on the server.
+
+Have a clean repository that meets quality coding standards (file structure, naming conventions, best practices for class and id naming conventions, indentation, high-quality comments, etc.).
+
+Have a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
 
 
 
 
-Challenges in this project: biggest challenge with this project, was getting used to making sure i cleared the cache before running up the appication after every code change. I enjoyed learning how PWAs work and how you can implement idb database and caching to enable apps to function even while offline.
+
+Challenges in this project: biggest challenge with this project, was getting restful apis to link to the application with no error to allow for successful movie rating to show, find where to watch movies and to find movies searched. Another issue came from merging the backend and frontend together using a third party api being tail wind with so many conflicts as a team we worked together to rebuild the fornt end onto the back end using bootstrap which was a success
 
 
 ## Installation
@@ -110,7 +107,7 @@ The code files are fully commented, to explain the flow and logic of the code, s
 
 ### Screenshot of deployed application
 
-![Screenshot of deployed site](./server/assets/images/enigmawoman-mern-book-search.herokuapp.com.png)
+![]()
 
 
 ## Usage
@@ -123,7 +120,7 @@ NA
 
 ## Questions
 
-If you have any questions, reach out [@enigmawoman](https://github.com/enigmawoman)</br>
+If you have any questions, reach out []()</br>
 
 
 

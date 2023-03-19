@@ -210,7 +210,7 @@ const SearchMovies = () => {
        <iframe width="700" height="430" src="https://www.youtube.com/embed/D-3sg-tyHdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </Container>
         <Container>
-          <h1 className="Stype"> SEARCH A MOVIE</h1>
+          <h1 className="Stype"   style={{ color:"black", fontSize:"60px", fontWeight:"bold"}}> SEARCH A MOVIE</h1>
           
    
           <Form className="Btype" onSubmit={handleFormSubmit}>
@@ -222,13 +222,13 @@ const SearchMovies = () => {
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
-                  style={{ width:"105%", borderRadius: "25px"}}
+                  style={{ width:"105%",}}
                   size="lg"
                   placeholder="Search top movies..."
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg"   style={{ width: "100%", marginLeft: "10px", borderRadius:"30px"}}>
+                <Button type="submit" variant="success" size="lg"   style={{ width: "100%", marginLeft: "10px" }}>
                   SUMBIT
                 </Button>
               </Col>
