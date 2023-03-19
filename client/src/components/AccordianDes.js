@@ -24,7 +24,7 @@ export default function AccordianDes({overview}) {
           
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Movie Description
+            Description
           </Typography>
         </AccordionSummary>
         <AccordionDetails className="accordian-description">
