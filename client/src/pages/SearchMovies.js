@@ -215,8 +215,7 @@ const SearchMovies = () => {
           
    
           <Form className="Btype" onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <div className="Ctype">
+            <Form.Row className="Ctype">
               <Col xs={12} md={8}>
                 <Form.Control
                   name="searchInput"
@@ -229,11 +228,11 @@ const SearchMovies = () => {
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg"   style={{ width: "100%", marginLeft: "10px", borderRadius:"30px"}}>
+                <Button type="submit" variant="success" size="lg"   style={{ width: "100%", marginLeft: "30px", borderRadius:"30px"}}>
                   SUBMIT
                 </Button>
               </Col>
-              </div>
+            
             </Form.Row>
           </Form>
       
