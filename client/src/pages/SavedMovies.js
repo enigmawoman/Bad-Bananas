@@ -4,13 +4,9 @@ import {
   CardColumns,
   Card,
   Button,
-  Accordion
 } from "react-bootstrap";
 
-import Footer from '../components/Footer'
-
-
-import { GiBananaPeeled } from "react-icons/gi";
+import Footer from '../components/Footer';
 
 import { GET_ME } from "../utils/queries";
 import { REMOVE_MOVIE } from "../utils/mutations";
@@ -103,7 +99,7 @@ const SavedMovies = () => {
                   >
                     Remove from Watchlist!
                   </Button>
-                    <UserRating movieId={movie.movieId} movieTitle={movie.title}/>
+                  <UserRating movieId={movie.movieId} movieTitle={movie.title}/>
                 </Card.Body>
               </div>
             );

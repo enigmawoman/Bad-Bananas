@@ -17,7 +17,7 @@ const AppNavbar = () => {
       <Navbar className="bg-white variant-dark expand-lg text-black">
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            <img src={me}/>
+            <img src={me} alt="logo of the business"/>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
