@@ -46,10 +46,10 @@ function UserRating({ movieId, movieTitle }) {
   // When the modal is closed, reset the rating, or load in a previous rating
   useEffect(() => {
 
-    if (!showModal) {
-      setRating(0);
-    }
-    else {
+     if (!showModal) {
+       setRating(0);
+     }
+     else {
       // Load in a previous rating if it exists
       const ratings = savedRatings === '' ? [] : JSON.parse(savedRatings)
       const userRating = ratings.find(rating => rating.movieId === movieId)
@@ -63,7 +63,7 @@ function UserRating({ movieId, movieTitle }) {
   const handleRatingSubmit = async (value) => {
 
     const ratings = savedRatings === '' ? [] : JSON.parse(savedRatings)
-    console.log(ratings, "ratings from LS")
+    
     if (!value) {
       return 0;
     }
@@ -89,15 +89,21 @@ function UserRating({ movieId, movieTitle }) {
 
 
   useEffect(() => {
+    
     if (savedRatings) {
       const ratings = JSON.parse(savedRatings);
-      const userRating = ratings.find(rating => rating.movieId === movieId)
+     
+      const userRating = ratings.find(rating => rating.movieId == movieId)
+     
       if (userRating) {
         const { rating } = userRating;
         setRating(rating);
       }
     }
   }, [savedRatings, movieId])
+
+
+
 
   return (
     <>

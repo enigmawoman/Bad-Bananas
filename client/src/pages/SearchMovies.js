@@ -7,9 +7,6 @@ import {
   Button,
   Card,
   CardColumns,
-  Nav,
-  Modal,
-  Tab,
 } from "react-bootstrap";
 
 import Footer from '../components/Footer'
@@ -22,7 +19,7 @@ import AccordianDes from "../components/AccordianDes";
 
 
 import Auth from "../utils/auth";
-import { Divider } from "@mui/material";
+
 
 
 
