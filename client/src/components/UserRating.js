@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react'
+// components in use from material UI
 import { Rating, Box, Typography } from "@mui/material"
+// custom icons for use with rating components
 import { GiBananaPeeled, GiBanana } from "react-icons/gi";
 import Auth from '../utils/auth';
+//local sotrage functions from the utils folder
 import { useLocalStorage } from "../utils/useLocalStorage";
 import {
   Modal,
   Tab,
   Card,
 } from "react-bootstrap";
+
+// setting the labels to display the number according to the number of bananas selected in the rating
 
 const labels = {
   0.5: '0.5',
@@ -35,9 +40,9 @@ const labels = {
 function getLabelText(value) {
   return `${value} Banana${value !== 1 ? 's' : ''}, ${labels[value]}`;
 }
-
+// user rating component - bringing in the movieId and movieTitle as props from the searchMovies and savedMovies pages
 function UserRating({ movieId, movieTitle }) {
-
+//setting up the state for the user rating component
   const [savedRatings, setSavedRatings] = useLocalStorage('ratings', '')
   const [rating, setRating] = useState(1);
   const [showModal, setShowModal] = useState(false);
@@ -59,7 +64,7 @@ function UserRating({ movieId, movieTitle }) {
     }
   }, [showModal])
 
-
+// handles the ratig that the user selects in the modal and passes the data to the local storage function through the state 
   const handleRatingSubmit = async (value) => {
 
     const ratings = savedRatings === '' ? [] : JSON.parse(savedRatings)
@@ -87,7 +92,7 @@ function UserRating({ movieId, movieTitle }) {
     }
   }
 
-
+// this useEffect is finding the rating from local storage using the movieId in order to render it on the page
   useEffect(() => {
     
     if (savedRatings) {
