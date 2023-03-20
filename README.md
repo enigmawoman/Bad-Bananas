@@ -103,7 +103,7 @@ The code files are fully commented, to explain the flow and logic of the code, s
 
 ### Deployment Link.
 
-<a href="https://enigmawoman-mern-book-search.herokuapp.com/"><b>Deployed book search engine link</b></a>
+<a href="https://mern-movie-search-badbananas.herokuapp.com/"><b>Deployed book search engine link</b></a>
 
 ### Screenshot of deployed application
 
