@@ -24,7 +24,7 @@ import Auth from "../utils/auth";
 
 
 const SearchMovies = () => {
-  // create state for holding returned google api data
+  // create state for holding returned api data
   const [searchedMovies, setSearchedMovies] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState("");
@@ -37,14 +37,13 @@ const SearchMovies = () => {
   const [topMovies, setTopMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  
-  // the API for most popular movies: https://api.themoviedb.org/3/movie/top_rated?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e&language=en-US&page=1
+  // fetching data form the api for the top trending movies to render to the homepage when the page loads
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/popular?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e&language=en-US&page=1&region=GB`)
     .then(response => response.json())
     .then(data => {
-
+// mapping our response from the api into data sets 
       const movieData = data.results.map((movie) => ({
 
         movieId: movie.id,
@@ -54,7 +53,7 @@ const SearchMovies = () => {
         title: movie.title || 'no title available',
         image:(movie.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg`  : `https://image.tmdb.org/t/p/original/${movie.poster_path }`) ,
       }));
-      
+      // second API call on the movieID to provide the link to the where to watch fo the movie
       const moviePromises = movieData.map((movie) =>
       fetch(
         `https://api.themoviedb.org/3/movie/${movie.movieId}/watch/providers?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e`
@@ -98,18 +97,18 @@ const SearchMovies = () => {
     if (!searchInput) {
       return false;
     }
-  
+  // taking the searchInput as a parameter to call the APi to return the movie data for the searched movie
     try {
       const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e&language=en-US&query=${searchInput}&page=1&include_adult=false`);
   
-      //https://api.themoviedb.org/3/movie/550?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e
+      
   
       if (!response.ok) {
         throw new Error("something went wrong!");
       }
   
       const { results } = await response.json();
-  
+  // mapping out the results
       const movieData = results.map((movie) => ({
         movieId: movie.id,
         rating: movie.vote_average == null ? 0 : movie.vote_average,
@@ -118,7 +117,7 @@ const SearchMovies = () => {
         title: movie.title || 'no title available',
         image: (movie.poster_path == null ? `https://www.homecaredirect.co.uk/wp-content/uploads/2013/10/Awaiting-Image1.jpg` : `https://image.tmdb.org/t/p/original/${movie.poster_path}`),
       }));
-  
+  // second call to the API to get the where to watch link for each film
       const moviePromises = movieData.map((movie) =>
         fetch(
           `https://api.themoviedb.org/3/movie/${movie.movieId}/watch/providers?api_key=8338ff4dca8c5dfd0d759e7c144e0a5e`
