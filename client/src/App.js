@@ -10,8 +10,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SearchMovies from "./pages/SearchMovies";
 import SavedMovies from "./pages/SavedMovies";
 import Navbar from "./components/Navbar";
+import dotenv from "dotenv"
 
-console.log(process.env.REACT_APP_DESCRIPTION)
+dotenv.config()
+
+console.log(process.env.REACT_APP_API_KEY)
 
 const httpLink = createHttpLink({
   uri: "/graphql",

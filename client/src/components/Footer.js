@@ -1,8 +1,9 @@
 import React from "react";
 
-
+// importing icons from "react-icons'
 import { FaChevronRight } from "react-icons/fa";
 
+// the footer component to diaplsy contact info and comnapy info
 const Footer = () => {
     return ( 
         <footer className="pb-4 pt-5 bg-light text-secondary">

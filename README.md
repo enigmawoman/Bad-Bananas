@@ -15,7 +15,7 @@ Final Project: MERN Stack Single-Page Application
 * [Installation](#installation)
 * [Testing](#testing)
 * [Using the code](#using-the-code)
-* [PWA text editor deployment](#pwa-text-editor-deployment)
+* [Movie search deployment](#movie-search-engine-deployment)
     * [Deployment Link](#deployment-link)
     * [Screenshot of application](#screenshot-of-deployed-application)
 * [Usage](#usage)
@@ -99,15 +99,17 @@ Once you have finished using the code, be sure to run *(ctrl+C)* or *(^C)* to cl
 The code files are fully commented, to explain the flow and logic of the code, so that others can work on this and expand on it too.
 
 
-## Book Search Engine deployment.
+## Movie Search Engine deployment.
 
 ### Deployment Link.
 
-<a href="https://mern-movie-search-badbananas.herokuapp.com/"><b>Deployed book search engine link</b></a>
+
+<a href="https://enigmawoman-mern-book-search.herokuapp.com/"><b>Deployed movie search engine link</b></a>
+
 
 ### Screenshot of deployed application
 
-![]()
+![Screenshot of deployed application](./client/src/images/badbananaSS.png)
 
 
 ## Usage
@@ -120,7 +122,7 @@ NA
 
 ## Questions
 
-If you have any questions, reach out []()</br>
+If you have any questions, reach out @BadBananas</br>
 
 
 
